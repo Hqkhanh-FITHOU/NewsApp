@@ -18,15 +18,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.loc.newsapp.presentation.common.NewsTextButton
-import com.loc.newsapp.presentation.onboarding.Dimens.MediumPadding2
-import com.loc.newsapp.presentation.onboarding.Dimens.PageIndicatorWidth
+import com.loc.newsapp.presentation.Dimens.MediumPadding2
+import com.loc.newsapp.presentation.Dimens.PageIndicatorWidth
+import com.loc.newsapp.presentation.common.NewsButton
 import com.loc.newsapp.presentation.onboarding.components.OnBoardingPage
 import com.loc.newsapp.presentation.onboarding.components.PageIndicator
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen(){
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit
+){
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -74,12 +77,12 @@ fun OnBoardingScreen(){
                         }
                     )
                 }
-                NewsTextButton(
+                NewsButton (
                     text = buttonState.value[1],
                     onClick = {
                         scope.launch {
-                            if (pageState.currentPage == 3) {
-                                //TODO: navigate to home screen
+                            if (pageState.currentPage == 2) {
+                                event(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pageState.animateScrollToPage(page = pageState.currentPage + 1)
                             }
