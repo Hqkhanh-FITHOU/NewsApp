@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)){
                     val startDestination = viewModel.startDestination
-                    NavGraph(startDestination = startDestination.toString())
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }
